@@ -1,4 +1,4 @@
-package com.exort;
+package com.exort.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
