@@ -1,5 +1,8 @@
 package com.exort.dao;
 
-public interface ArrangementDAO {
+import com.exort.entity.Arrangement;
 
+public interface ArrangementDAO {
+    public void insert(Arrangement arrangement);
+    public Arrangement find(int id);
 }

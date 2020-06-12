@@ -1,5 +1,8 @@
 package com.exort.dao;
 
-public interface ParticipationDAO {
+import com.exort.entity.Participation;
 
+public interface ParticipationDAO {
+    public void insert(Participation participation);
+    public Participation find(int id);
 }
