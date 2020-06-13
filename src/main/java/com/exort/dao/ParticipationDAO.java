@@ -4,5 +4,5 @@ import com.exort.entity.Participation;
 
 public interface ParticipationDAO {
     public void insert(Participation participation);
-    public Participation find(int id);
+    public Participation find(Integer cid, Integer aid);
 }
