@@ -13,16 +13,6 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 public class ExortApplication {
 
 	public static void main(String[] args) {
-		// SpringApplication.run(ExortApplication.class, args);
-
-		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:mysql.xml");
-		Character character = new Character();
-		character.setId(0);
-		character.setName("myself");
-		character.setArea("???");
-		character.setSchool("???");
-
-		CharacterDAO dao = (CharacterDAOImpl)context.getBean("characterDao");
-		dao.insert(character);
+		SpringApplication.run(ExortApplication.class, args);
 	}
 }

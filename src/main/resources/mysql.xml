@@ -18,4 +18,10 @@
     <bean id="characterDao" class="com.exort.dao.CharacterDAOImpl" parent="baseDao">
     </bean>
 
+    <bean id="arrangementDao" class="com.exort.dao.ArrangementDAOImpl" parent="baseDao">
+    </bean>
+
+    <bean id="participationDao" class="com.exort.dao.ParticipationDAOImpl" parent="baseDao">
+    </bean>
+
 </beans>
