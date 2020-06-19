@@ -1,5 +1,6 @@
 package com.exort;
 
+import com.exort.dao.BaseDAO;
 import com.exort.dao.CharacterDAO;
 import com.exort.dao.CharacterDAOImpl;
 import com.exort.entity.Character;
