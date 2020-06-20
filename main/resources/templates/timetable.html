@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>ExOrT -- Timetable</title>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">ExOrT</a>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">时间表</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">任务管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">角色管理</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="fluid-container">
+            <br/>
+            <h4 th:text="${year} + '年, 第' + ${week} + '周'"/>
+        </div>
+    </body>
+</html>
