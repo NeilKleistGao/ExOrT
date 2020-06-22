@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
         <title>ExOrT -- Timetable</title>
@@ -27,6 +27,57 @@
         <div class="fluid-container">
             <br/>
             <h4 th:text="${year} + '年, 第' + ${week} + '周'"/>
+            <br/>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col"/>
+                        <th scope="col">
+                            星期一<br/>
+                            <small th:text="${date0}"/>
+                        </th>
+                        <th scope="col">
+                            星期二<br/>
+                            <small th:text="${date1}"/>
+                        </th>
+                        <th scope="col">
+                            星期三<br/>
+                            <small th:text="${date2}"/>
+                        </th>
+                        <th scope="col">
+                            星期四<br/>
+                            <small th:text="${date3}"/>
+                        </th>
+                        <th scope="col">
+                            星期五<br/>
+                            <small th:text="${date4}"/>
+                        </th>
+                        <th scope="col">
+                            星期六<br/>
+                            <small th:text="${date5}"/>
+                        </th>
+                        <th scope="col">
+                            星期日<br/>
+                            <small th:text="${date6}"/>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="time, stat : ${timeline}">
+                        <td th:text="${time}" scope="row"/>
+
+                        <td th:id="'grid' + ${stat.index * 7}"/>
+                        <td th:id="'grid' + ${stat.index * 7 + 1}"/>
+                        <td th:id="'grid' + ${stat.index * 7 + 2}"/>
+                        <td th:id="'grid' + ${stat.index * 7 + 3}"/>
+                        <td th:id="'grid' + ${stat.index * 7 + 4}"/>
+                        <td th:id="'grid' + ${stat.index * 7 + 5}"/>
+                        <td th:id="'grid' + ${stat.index * 7 + 6}"/>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </body>
 </html>
