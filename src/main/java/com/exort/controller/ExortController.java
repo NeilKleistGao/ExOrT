@@ -37,6 +37,7 @@ public class ExortController {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, Integer.parseInt(year));
         calendar.set(Calendar.WEEK_OF_YEAR, Integer.parseInt(week));
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
         Date start = calendar.getTime();
 
@@ -45,6 +46,19 @@ public class ExortController {
             calendar.add(Calendar.DATE, i);
             model.addAttribute("date" + String.valueOf(i), dateFormat.format(calendar.getTime()));
         }
+
+        calendar.setTime(start);
+        calendar.add(Calendar.DATE, 7);
+        if (calendar.get(Calendar.WEEK_OF_YEAR) == 1) {
+            calendar.add(Calendar.YEAR, 1);
+        }
+        model.addAttribute("next", String.valueOf(calendar.get(Calendar.YEAR)) + "/" + String.valueOf(calendar.get(Calendar.WEEK_OF_YEAR)));
+        calendar.setTime(start);
+        calendar.add(Calendar.DATE, -6);
+        model.addAttribute("previous", String.valueOf(calendar.get(Calendar.YEAR)) + "/" + String.valueOf(calendar.get(Calendar.WEEK_OF_YEAR)));
+
+
+        model.addAttribute("today", dateFormat.format(new Date()));
 
         calendar.set(Calendar.HOUR_OF_DAY, 7);
         calendar.set(Calendar.MINUTE, 0);

@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>ExOrT -- Timetable</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -20,64 +21,87 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">角色管理</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">设置</a>
+                    </li>
                 </ul>
             </div>
         </nav>
 
         <div class="fluid-container">
             <br/>
-            <h4 th:text="${year} + '年, 第' + ${week} + '周'"/>
-            <br/>
+            <h4 th:text="${year} + '年, 第' + ${week} + '周'"></h4>
+            &nbsp;&nbsp;
+            <a th:href="'/timetable/' + ${previous}">上一周</a>
+            <a href="/timetable/0/0">本周</a>
+            <a th:href="'/timetable/' + ${next}">下一周</a>
 
+            <br/>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col"/>
-                        <th scope="col">
-                            星期一<br/>
-                            <small th:text="${date0}"/>
+                        <th scope="col"></th>
+                        <th th:if="${today eq date0}" class="table-primary" scope="col">
+                            星期一<br/><small th:text="${date0}"></small>
                         </th>
-                        <th scope="col">
-                            星期二<br/>
-                            <small th:text="${date1}"/>
+                        <th th:if="${today ne date0}" scope="col">
+                            星期一<br/><small th:text="${date0}"></small>
                         </th>
-                        <th scope="col">
-                            星期三<br/>
-                            <small th:text="${date2}"/>
+                        <th th:if="${today eq date1}" class="table-primary" scope="col">
+                            星期二<br/><small th:text="${date1}"></small>
                         </th>
-                        <th scope="col">
-                            星期四<br/>
-                            <small th:text="${date3}"/>
+                        <th th:if="${today ne date1}" scope="col">
+                            星期二<br/><small th:text="${date1}"></small>
                         </th>
-                        <th scope="col">
-                            星期五<br/>
-                            <small th:text="${date4}"/>
+                        <th th:if="${today eq date2}" class="table-primary" scope="col">
+                            星期三<br/><small th:text="${date2}"></small>
                         </th>
-                        <th scope="col">
-                            星期六<br/>
-                            <small th:text="${date5}"/>
+                        <th th:if="${today ne date2}" scope="col">
+                            星期三<br/><small th:text="${date2}"></small>
                         </th>
-                        <th scope="col">
-                            星期日<br/>
-                            <small th:text="${date6}"/>
+                        <th th:if="${today eq date3}" class="table-primary" scope="col">
+                            星期四<br/><small th:text="${date3}"></small>
+                        </th>
+                        <th th:if="${today ne date3}" scope="col">
+                            星期四<br/><small th:text="${date3}"></small>
+                        </th>
+                        <th th:if="${today eq date4}" class="table-primary" scope="col">
+                            星期五<br/><small th:text="${date4}"></small>
+                        </th>
+                        <th th:if="${today ne date4}" scope="col">
+                            星期五<br/><small th:text="${date4}"></small>
+                        </th>
+                        <th th:if="${today eq date5}" class="table-primary" scope="col">
+                            星期六<br/><small th:text="${date5}"></small>
+                        </th>
+                        <th th:if="${today ne date5}" scope="col">
+                            星期六<br/><small th:text="${date5}"></small>
+                        </th>
+                        <th th:if="${today eq date6}" class="table-primary" scope="col">
+                            星期日<br/><small th:text="${date6}"></small>
+                        </th>
+                        <th th:if="${today ne date6}" scope="col">
+                            星期日<br/><small th:text="${date6}"></small>
                         </th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr th:each="time, stat : ${timeline}">
-                        <td th:text="${time}" scope="row"/>
+                        <td th:text="${time}" scope="row"></td>
 
-                        <td th:id="'grid' + ${stat.index * 7}"/>
-                        <td th:id="'grid' + ${stat.index * 7 + 1}"/>
-                        <td th:id="'grid' + ${stat.index * 7 + 2}"/>
-                        <td th:id="'grid' + ${stat.index * 7 + 3}"/>
-                        <td th:id="'grid' + ${stat.index * 7 + 4}"/>
-                        <td th:id="'grid' + ${stat.index * 7 + 5}"/>
-                        <td th:id="'grid' + ${stat.index * 7 + 6}"/>
+                        <td th:id="'grid' + ${stat.index * 7}"></td>
+                        <td th:id="'grid' + ${stat.index * 7 + 1}"></td>
+                        <td th:id="'grid' + ${stat.index * 7 + 2}"></td>
+                        <td th:id="'grid' + ${stat.index * 7 + 3}"></td>
+                        <td th:id="'grid' + ${stat.index * 7 + 4}"></td>
+                        <td th:id="'grid' + ${stat.index * 7 + 5}"></td>
+                        <td th:id="'grid' + ${stat.index * 7 + 6}"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <script src="../../js/timetable.js"></script>
     </body>
 </html>
