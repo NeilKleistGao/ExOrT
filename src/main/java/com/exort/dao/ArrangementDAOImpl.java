@@ -53,30 +53,15 @@ public class ArrangementDAOImpl extends BaseDAO implements ArrangementDAO {
     }
 
     @Override
-    public List<Arrangement> find(String date) {
-        List<Arrangement> arrangements = new LinkedList<>();
-        List rows = getJdbcTemplate().queryForList(
-                "select * from arrangement where " + date + ">= start_date and " + date + "<= end_date");
-
+    public List<Arrangement> find() {
+        List<Arrangement> res = new LinkedList<>();
+        List rows = getJdbcTemplate().queryForList("select * from arrangement");
         Iterator it = rows.iterator();
+
         while (it.hasNext()) {
-            Arrangement arrangement = getArrangementFromMap((Map)it.next());
-
-            java.util.Date start = new java.util.Date(arrangement.getStart_date().getTime());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                java.util.Date now = dateFormat.parse(date);
-                long t2 = now.getTime(), t1 = start.getTime();
-                int days = (int)((t2 - t1) / (1000 * 60 * 60 * 24));
-
-                if (days % arrangement.getRepeat() == 0) {
-                    arrangements.add(arrangement);
-                }
-            }
-            catch (ParseException e) {
-            }
+            res.add(getArrangementFromMap((Map)it.next()));
         }
 
-        return arrangements;
+        return res;
     }
 }

@@ -8,5 +8,5 @@ import java.util.List;
 public interface ArrangementDAO {
     public void insert(Arrangement arrangement);
     public Arrangement find(Integer id);
-    public List<Arrangement> find(String date);
+    public List<Arrangement> find();
 }

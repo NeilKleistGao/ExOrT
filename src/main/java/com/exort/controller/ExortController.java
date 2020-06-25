@@ -1,5 +1,8 @@
 package com.exort.controller;
 
+import com.exort.dao.ArrangementDAO;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -77,5 +80,16 @@ public class ExortController {
         model.addAttribute("timeline", timeline);
 
         return "timetable";
+    }
+
+    @RequestMapping("/arrangement")
+    public String getArrangement(Model model) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:mysql.xml");
+        ArrangementDAO dao = (ArrangementDAO) context.getBean("arrangementDao");
+
+        List arrangements = dao.find();
+        model.addAttribute("arrangements", arrangements);
+
+        return "arrangement";
     }
 }
