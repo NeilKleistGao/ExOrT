@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <title>ExOrT -- Arrangements</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+        <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -19,10 +20,10 @@
                         <a class="nav-link" href="#">活动管理</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">角色管理</a>
+                        <a class="nav-link" href="/character">角色管理</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">设置</a>
+                        <a class="nav-link" href="/settings">设置</a>
                     </li>
                 </ul>
             </div>
@@ -31,6 +32,8 @@
         <div class="fluid-container">
             <br/>
             <h4>活动管理</h4>
+            <button class="btn btn-primary" style="float:right" id="create">新建</button>
+
             <br/>
 
             <table class="table table-hover">
@@ -45,17 +48,58 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="table">
                     <tr th:each="arr : ${arrangements}">
-                        <td scope="row" th:text="${arr.name}"></td>
-                        <td scope="row" th:text="${arr.start_date}"></td>
-                        <td scope="row" th:text="${arr.end_date}"></td>
-                        <td scope="row" th:text="${arr.repeat}"></td>
-                        <td scope="row" th:text="${arr.start_time}"></td>
-                        <td scope="row" th:text="${arr.end_time}"></td>
+                        <td class="data-id" hidden th:text="${arr.id}"></td>
+                        <td class="data-name" scope="row" th:text="${arr.name}"></td>
+                        <td class="data-start-date" scope="row" th:text="${arr.start_date}"></td>
+                        <td class="data-end-date" scope="row" th:text="${arr.end_date}"></td>
+                        <td class="data-repeat" scope="row" th:text="${arr.repeat}"></td>
+                        <td class="data-start-time" scope="row" th:text="${arr.start_time}"></td>
+                        <td class="data-end-time" scope="row" th:text="${arr.end_time}"></td>
                     </tr>
                 </tbody>
             </table>
+
+            <div class="modal" id="setting_modal">
+                <div class="modal-dialog" role="form">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5>编辑活动</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <input hidden id="id">
+                            <label>活动名称：</label>
+                            <input class="form-control" id="name">
+                            <label>开始日期：</label>
+                            <input type="date" class="form-control" id="start-date">
+                            <label>结束日期：</label>
+                            <input type="date" class="form-control" id="end-date">
+                            <label>循环周期：</label>
+                            <input type="number" class="form-control" id="repeat" min="0" step="1">
+                            <label>开始时间：</label>
+                            <input type="time" class="form-control" id="start-time">
+                            <label>结束时间：</label>
+                            <input type="time" class="form-control" id="end-time">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="submit">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <script src="../../js/arrangement.js"></script>
     </body>
+
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
 </html>

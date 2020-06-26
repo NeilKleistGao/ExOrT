@@ -4,8 +4,6 @@ import com.exort.entity.Arrangement;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +13,6 @@ public class ArrangementDAOImpl extends BaseDAO implements ArrangementDAO {
 
     @Override
     public void insert(Arrangement arrangement) {
-        int id = arrangement.getId().intValue();
         String name = arrangement.getName();
         Date start_date = arrangement.getStart_date();
         Date end_date = arrangement.getEnd_date();
@@ -23,8 +20,8 @@ public class ArrangementDAOImpl extends BaseDAO implements ArrangementDAO {
         Time start_time = arrangement.getStart_time();
         Time end_time = arrangement.getEnd_time();
 
-        String sql = "insert into arrangement(id, name, start_date, end_date, repeat, start_time, end_time) values(?, ?, ?, ?, ?, ?, ?);";
-        this.getJdbcTemplate().update(sql, new Object[] {id, name, start_date, end_date, repeat, start_time, end_time});
+        String sql = "insert into arrangement(name, start_date, end_date, `repeat`, start_time, end_time) values(?, ?, ?, ?, ?, ?);";
+        this.getJdbcTemplate().update(sql, new Object[] {name, start_date, end_date, repeat, start_time, end_time});
     }
 
     private Arrangement getArrangementFromMap(Map map) {
@@ -42,6 +39,10 @@ public class ArrangementDAOImpl extends BaseDAO implements ArrangementDAO {
 
     @Override
     public Arrangement find(Integer id) {
+        if (id == null) {
+            return null;
+        }
+
         List rows = getJdbcTemplate().queryForList("select * from arrangement where id=" + id.intValue());
         Iterator it = rows.iterator();
 
@@ -63,5 +64,25 @@ public class ArrangementDAOImpl extends BaseDAO implements ArrangementDAO {
         }
 
         return res;
+    }
+
+    @Override
+    public void update(Arrangement arrangement) {
+        String sql = "update `arrangement` set name=?, start_date=?, end_date=?, `repeat`=?, start_time=?, end_time=? where id=?;";
+        int id = arrangement.getId().intValue();
+        String name = arrangement.getName();
+        Date start_date = arrangement.getStart_date();
+        Date end_date = arrangement.getEnd_date();
+        int repeat = arrangement.getRepeat().intValue();
+        Time start_time = arrangement.getStart_time();
+        Time end_time = arrangement.getEnd_time();
+
+        this.getJdbcTemplate().update(sql, new Object[] {name, start_date, end_date, repeat, start_time, end_time, id});
+    }
+
+    @Override
+    public void delete(Integer id) {
+        String sql = "delete from `arrangement` where id=" + id.toString();
+        this.getJdbcTemplate().update(sql);
     }
 }

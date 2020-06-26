@@ -1,4 +1,4 @@
-package com.exort.controller;
+package com.exort.controller.restful;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

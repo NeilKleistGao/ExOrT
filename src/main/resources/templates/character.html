@@ -1,10 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>ExOrT -- Characters</title>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+        <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">ExOrT</a>
 
-</body>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/timetable/0/0">时间表</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/arrangement">活动管理</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">角色管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/settings">设置</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="fluid-container">
+            <br/>
+            <h4>角色管理</h4>
+            <button class="btn btn-primary" style="float:right" id="create">新建</button>
+
+            <br/>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">角色名字</th>
+                    <th scope="col">所在地区</th>
+                    <th scope="col">所在学校/公司</th>
+                </tr>
+                </thead>
+
+                <tbody id="table">
+                <tr th:each="ch : ${characters}" class="right-click-menu">
+                    <td class="data-id" hidden th:text="${ch.id}"></td>
+                    <td class="data-name" scope="row" th:text="${ch.name}"></td>
+                    <td class="data-area" scope="row" th:text="${ch.area}"></td>
+                    <td class="data-school" scope="row" th:text="${ch.school}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="modal fade" id="setting_modal">
+                <div class="modal-dialog" role="dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5>编辑角色</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <input hidden id="id">
+                            <label>角色名称：</label>
+                            <input type="tel" class="form-control" id="name">
+                            <label>所在地区：</label>
+                            <input type="tel" class="form-control" id="area">
+                            <label>所在学校/公司：</label>
+                            <input type="tel" class="form-control" id="school">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="submit">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../js/character.js"></script>
+    </body>
+
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
 </html>

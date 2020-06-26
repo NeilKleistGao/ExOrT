@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class Arrangement {
-    private Integer id;
+    private Integer id = null;
     private String name;
     private Date start_date;
     private Date end_date;

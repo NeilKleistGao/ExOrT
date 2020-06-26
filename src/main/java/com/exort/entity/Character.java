@@ -1,10 +1,10 @@
 package com.exort.entity;
 
 public class Character {
-    private Integer id;
-    private String name;
-    private String area;
-    private String school;
+    private Integer id = null;
+    private String name = null;
+    private String area = null;
+    private String school = null;
 
     public void setId(Integer id) {
         this.id = id;

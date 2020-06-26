@@ -1,6 +1,8 @@
 package com.exort.controller;
 
 import com.exort.dao.ArrangementDAO;
+import com.exort.dao.CharacterDAO;
+import org.springframework.boot.Banner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -91,5 +93,21 @@ public class ExortController {
         model.addAttribute("arrangements", arrangements);
 
         return "arrangement";
+    }
+
+    @RequestMapping("/character")
+    public String getCharacter(Model model) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:mysql.xml");
+        CharacterDAO dao = (CharacterDAO)context.getBean("characterDao");
+
+        List characters = dao.find();
+        model.addAttribute("characters", characters);
+
+        return "character";
+    }
+
+    @RequestMapping("/settings")
+    public String getSettings(Model model) {
+        return "settings";
     }
 }
