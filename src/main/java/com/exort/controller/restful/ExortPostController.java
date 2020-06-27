@@ -2,6 +2,7 @@ package com.exort.controller.restful;
 
 import com.exort.dao.ArrangementDAO;
 import com.exort.dao.CharacterDAO;
+import com.exort.dao.ParticipationDAO;
 import com.exort.entity.Arrangement;
 import com.exort.entity.Character;
 import org.springframework.context.ApplicationContext;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -24,10 +26,10 @@ public class ExortPostController {
             character.setId(Integer.valueOf(param.get("id")));
         }
         character.setName(param.get("name"));
-        if (!param.get("id").equals("")) {
+        if (!param.get("area").equals("")) {
             character.setArea(param.get("area"));
         }
-        if (!param.get("id").equals("")) {
+        if (!param.get("school").equals("")) {
             character.setSchool(param.get("school"));
         }
 
@@ -68,8 +70,10 @@ public class ExortPostController {
     public void postDeleteCharacter(@RequestParam Map<String, String> param) {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:mysql.xml");
         CharacterDAO dao = (CharacterDAO)context.getBean("characterDao");
+        ParticipationDAO dao2 = (ParticipationDAO)context.getBean("participationDao");
 
         if (!param.get("id").equals("")) {
+            dao2.deleteByCID(Integer.valueOf(param.get("id")));
             dao.delete(Integer.valueOf(param.get("id")));
         }
     }
@@ -78,9 +82,35 @@ public class ExortPostController {
     public void postDeleteArrangement(@RequestParam Map<String, String> param) {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:mysql.xml");
         ArrangementDAO dao = (ArrangementDAO)context.getBean("arrangementDao");
+        ParticipationDAO dao2 = (ParticipationDAO)context.getBean("participationDao");
 
         if (!param.get("id").equals("")) {
+            dao2.deleteByAID(Integer.valueOf(param.get("id")));
             dao.delete(Integer.valueOf(param.get("id")));
+        }
+    }
+
+    @RequestMapping(value = "/update/participation", method = RequestMethod.POST)
+    public void postUpdateParticipation(@RequestParam Map<String, String> param) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:mysql.xml");
+        ParticipationDAO dao = (ParticipationDAO)context.getBean("participationDao");
+
+        if (!param.get("id").equals("")) {
+            Integer cid = Integer.valueOf(param.get("id"));
+            param.remove("id", cid.toString());
+            List<Integer> participation = dao.findAID(cid);
+            for (Integer aid : participation) {
+                if (Boolean.valueOf(param.get(aid.toString())) == false) {
+                    dao.delete(cid, aid);
+                    participation.remove((Object)aid);
+                }
+            }
+
+            for (Map.Entry<String, String> entry : param.entrySet()) {
+                if (Boolean.valueOf(entry.getValue()) == true && !participation.contains(entry.getKey())) {
+                    dao.insert(cid, Integer.valueOf(entry.getKey()));
+                }
+            }
         }
     }
 }

@@ -73,6 +73,13 @@
                             <input type="tel" class="form-control" id="area">
                             <label>所在学校/公司：</label>
                             <input type="tel" class="form-control" id="school">
+                            <label>参与的活动：</label>
+                            <div class="form-group">
+                                <div th:each="arr : ${arrangements}" class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" th:id="'check-' + ${arr.id}">
+                                    <label th:text="${arr.name}" class="custom-control-label" th:for="'check-' + ${arr.id}"></label>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="modal-footer">

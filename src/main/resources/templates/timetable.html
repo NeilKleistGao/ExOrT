@@ -87,16 +87,15 @@
                 </thead>
 
                 <tbody>
-                    <tr th:each="time, stat : ${timeline}">
-                        <td th:text="${time}" scope="row"></td>
-
-                        <td th:id="'grid' + ${stat.index * 7}"></td>
-                        <td th:id="'grid' + ${stat.index * 7 + 1}"></td>
-                        <td th:id="'grid' + ${stat.index * 7 + 2}"></td>
-                        <td th:id="'grid' + ${stat.index * 7 + 3}"></td>
-                        <td th:id="'grid' + ${stat.index * 7 + 4}"></td>
-                        <td th:id="'grid' + ${stat.index * 7 + 5}"></td>
-                        <td th:id="'grid' + ${stat.index * 7 + 6}"></td>
+                    <tr th:each="item, stat : ${timetable}">
+                        <td th:text="${item.time}" scope="row"></td>
+                        <td th:each="lst: ${item.list}">
+                            <ul>
+                                <li th:each="arr: ${lst}">
+                                    <span th:text="${arr.name}" data-toggle="tooltip" data-placement="right" title="参与人员" th:data-original-title="arr.chars"></span>
+                                </li>
+                            </ul>
+                        </td>
                     </tr>
                 </tbody>
             </table>

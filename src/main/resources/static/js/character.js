@@ -5,6 +5,8 @@ $(document).ready(function() {
         $("#area").val("");
         $("#school").val("");
 
+        $(".form-group").hide();
+
         $("#setting_modal").modal("show");
     });
 
@@ -12,6 +14,20 @@ $(document).ready(function() {
         if ($("#name").val() === "") {
             $("#name").addClass("is-invalid");
             return;
+        }
+
+        if ($("#id").val() != null) {
+            let participation_data = {
+                 id: $("#id").val()
+             };
+             let children = $("div.form-group").find("input");
+             for (let i = 0; i < children.length; i++) {
+                let aid = children[i].id;
+                participation_data[aid.substring(aid.indexOf("-") + 1)] = children[i].checked;
+                children[i].checked = false;
+             }
+
+             $.post("/update/participation", participation_data);
         }
 
         $.post("/update/character", {
@@ -34,7 +50,14 @@ $(document).ready(function() {
                 $("#area").val($(this).children("td.data-area")[0].innerHTML);
                 $("#school").val($(this).children("td.data-school")[0].innerHTML);
 
-                $("#setting_modal").modal("show");
+                $(".form-group").show();
+
+                $.get("/get/participation/aid/" + $("#id").val(), function(data, status) {
+                    for (let id of data) {
+                        $("#check-" + id).prop("checked", true);
+                    }
+                    $("#setting_modal").modal("show");
+                });
             }
             else if (key === "delete") {
                 $.post("/delete/character", {

@@ -1,20 +1,23 @@
 package com.exort.controller.restful;
 
+import com.exort.dao.ParticipationDAO;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.SimpleDateFormat;
+import java.util.List;
 
 @RestController
 public class ExortGetController {
 
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    @RequestMapping(value = "/get/participation/aid/{cid}", method = RequestMethod.GET)
+    public List<Integer> getArrangementId(@PathVariable("cid") String cid) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:mysql.xml");
+        ParticipationDAO dao = (ParticipationDAO)context.getBean("participationDao");
 
-    @RequestMapping(value = "/arrangement/{date}", method = RequestMethod.GET)
-    public Object getArrangementAt(@PathVariable("date") String date) {
-        //TODO:
-        return null;
+        return dao.findAID(Integer.valueOf(cid));
     }
 }
