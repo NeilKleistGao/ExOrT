@@ -8,6 +8,12 @@ use exort;
 drop table if exists `participation`;
 drop table if exists `character`;
 drop table if exists `arrangement`;
+drop table if exists `settings`;
+
+create table `settings`(
+    setting_key varchar(64) primary key,
+    setting_value varchar(128) not null
+) engine=InnoDB default charset=utf8;
 
 create table `character`(
     id int primary key auto_increment,
@@ -26,7 +32,7 @@ create table `arrangement`(
     end_time Time not null
 ) engine=InnoDB default charset=utf8;
 
-create table `participation`(
+create table `participation`()
     character_id int,
     arrangement_id int,
     primary key(character_id, arrangement_id),
@@ -34,6 +40,7 @@ create table `participation`(
     foreign key aid(arrangement_id) references `arrangement`(id) on delete no action on update no action
 ) engine=InnoDB default charset=utf8;
 
-grant select, update, insert delete on exort.* on "exort"@"localhost" identified by "exort";
+grant all on exort.* to "exort"@"localhost" identified by "exort";
 
 insert into `character`(id, name) values(0, "我");
+insert into `settings`(setting_key, setting_value) values("git", "");

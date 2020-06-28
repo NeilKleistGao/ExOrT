@@ -71,10 +71,10 @@ public class ParticipationDAOImpl extends BaseDAO implements ParticipationDAO {
 
     @Override
     public List<Map<Integer, ParticipationWithContent>> findBetween(Date today) {
-        String sql = "select arrangement.id as aid, arrangement.name as aname, `character`.name as cname, start_time, end_time from (arrangement, participation, `character`) \n" +
-                "where arrangement.id = participation.arrangement_id and \n" +
-                "`character`.id = participation.character_id and \n" +
-                "date(\"" + dateFormat.format(today) + "\") between start_date and end_date and \n" +
+        String sql = "select arrangement.id as aid, arrangement.name as aname, `character`.name as cname, start_time, end_time from (arrangement, participation, `character`) " +
+                "where arrangement.id = participation.arrangement_id and " +
+                "`character`.id = participation.character_id and " +
+                "date(\"" + dateFormat.format(today) + "\") between start_date and end_date and " +
                 "((select datediff(date(\"" + dateFormat.format(today) + "\"), arrangement.start_date) as df) % arrangement.repeat) = 0;";
         List rows = this.getJdbcTemplate().queryForList(sql);
         Iterator it = rows.iterator();
@@ -89,12 +89,12 @@ public class ParticipationDAOImpl extends BaseDAO implements ParticipationDAO {
             Time start_time = Time.valueOf(map.get("start_time").toString());
             Time end_time = Time.valueOf(map.get("end_time").toString());
 
-            int sub = (int)(end_time.getTime() - start_time.getTime()) / 1800;
-            int start = (int)(start_time.getTime() - Time.valueOf("07:00:00").getTime()) / 1800 - 1;
+            int sub = (int)(end_time.getTime() - start_time.getTime()) / 1800000;
+            int start = (int)(start_time.getTime() - Time.valueOf("07:00:00").getTime()) / 1800000;
             for (int i = start; i < start + sub; i++) {
                 Integer aid = Integer.valueOf(map.get("aid").toString());
                 if (res.get(i).containsKey(aid)) {
-                    ParticipationWithContent participation = res.get(i).get(i);
+                    ParticipationWithContent participation = res.get(i).get(aid);
                     participation.setCharacters(participation.getCharacters() + ", " + map.get("cname").toString());
                     res.get(i).put(aid, participation);
                 }

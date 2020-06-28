@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>ExOrT -- Timetable</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+        <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -37,7 +37,7 @@
             <a th:href="'/timetable/' + ${next}">下一周</a>
 
             <br/>
-            <table class="table table-hover">
+            <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -90,11 +90,11 @@
                     <tr th:each="item, stat : ${timetable}">
                         <td th:text="${item.time}" scope="row"></td>
                         <td th:each="lst: ${item.list}">
-                            <ul>
-                                <li th:each="arr: ${lst}">
-                                    <span th:text="${arr.name}" data-toggle="tooltip" data-placement="right" title="参与人员" th:data-original-title="arr.chars"></span>
-                                </li>
-                            </ul>
+                            <div>
+                                <div th:each="arr: ${lst}">
+                                    <span class="badge badge-primary" th:text="${arr.title}" data-toggle="tooltip" data-placement="right" th:title="${arr.characters}"></span>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

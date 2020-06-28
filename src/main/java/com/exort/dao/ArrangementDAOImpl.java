@@ -9,6 +9,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @see com.exort.dao.ArrangementDAO
+ * @see com.exort.dao.BaseDAO
+ */
 public class ArrangementDAOImpl extends BaseDAO implements ArrangementDAO {
 
     @Override

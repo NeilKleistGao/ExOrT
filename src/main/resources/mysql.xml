@@ -24,4 +24,7 @@
     <bean id="participationDao" class="com.exort.dao.ParticipationDAOImpl" parent="baseDao">
     </bean>
 
+    <bean id="settingsDao" class="com.exort.dao.SettingsDAOImpl" parent="baseDao">
+    </bean>
+
 </beans>

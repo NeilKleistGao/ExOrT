@@ -1,19 +1,15 @@
 package com.exort;
 
-import com.exort.dao.BaseDAO;
-import com.exort.dao.CharacterDAO;
-import com.exort.dao.CharacterDAOImpl;
-import com.exort.entity.Character;
+import com.exort.util.GitUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+
 
 @SpringBootApplication
 public class ExortApplication {
 
 	public static void main(String[] args) {
+		GitUtil.checkUpdate();
 		SpringApplication.run(ExortApplication.class, args);
 	}
 }

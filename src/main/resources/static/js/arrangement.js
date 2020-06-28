@@ -8,8 +8,8 @@ $(document).ready(function() {
         $("#start-date").val(today);
         $("#end-date").val(today);
         $("#repeat").val(0);
-        $("#start-time").val("07:00:00");
-        $("#end-time").val("19:00:00");
+        $("#start-time").val("07:00");
+        $("#end-time").val("19:00");
 
         $("#setting_modal").modal("show");
     });

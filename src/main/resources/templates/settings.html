@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
         <title>ExOrT -- Settings</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+        <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -27,5 +27,56 @@
                 </ul>
             </div>
         </nav>
+
+        <br/>
+        <div class="container">
+            <div class="jumbotron">
+                <h4>设置</h4>
+                <hr class="my-4"/>
+                <div th:each="item: ${settings_list}">
+                    <label class="control-label" th:text="${item.key}"></label>
+                    <input class="form-control" type="text" th:value="${item.value}" th:id="${item.key}">
+                </div>
+
+                <br/>
+
+                <button type="button" class="btn btn-primary" id="save">保存</button>
+                <button type="button" class="btn btn-primary" id="sync">同步</button>
+            </div>
+        </div>
+
+        <div class="modal fade" id="log_modal">
+            <div class="modal-dialog" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5>登录Git</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <label>用户名：</label>
+                        <input type="text" class="form-control" id="username">
+                        <label>密码：</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="submit">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-dismissible alert-success" style="position: absolute; right: 4px; bottom: 0px" id="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>保存成功</strong>
+        </div>
+
+        <script src="../../js/settings.js"></script>
     </body>
+
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </html>
