@@ -12,33 +12,33 @@ import java.util.List;
  */
 public interface CharacterDAO {
     /**
-     *
-     * @param character
+     * This method inserts a character object into database
+     * @param character The character object
      */
     public void insert(Character character);
 
     /**
-     *
-     * @param id
-     * @return
+     * This method searches for the character object having specified id
+     * @param id The specified id
+     * @return The character object having specified id, or null if it's not found
      */
     public Character find(Integer id);
 
     /**
-     *
-     * @return
+     * This method collects all character objects in database
+     * @return The list of all character objects
      */
     public List<Character> find();
 
     /**
-     *
-     * @param character
+     * This method updates a specified character object
+     * @param character The character to be updated
      */
     public void update(Character character);
 
     /**
-     *
-     * @param id
+     * This method removes the character object having specified id
+     * @param id The specified id
      */
     public void delete(Integer id);
 }

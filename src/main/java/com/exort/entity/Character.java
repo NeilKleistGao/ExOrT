@@ -1,5 +1,16 @@
 package com.exort.entity;
 
+/**
+ * This class represents the data in the table character
+ * create table `character`(
+ *     id int primary key auto_increment,
+ *     name varchar(64) not null,
+ *     area varchar(32),
+ *     school varchar(128)
+ * ) engine=InnoDB default charset=utf8;
+ * @author NeilKleistGao
+ * @version 1.0.0
+ */
 public class Character {
     private Integer id = null;
     private String name = null;

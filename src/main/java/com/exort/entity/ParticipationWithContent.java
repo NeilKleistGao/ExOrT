@@ -1,5 +1,11 @@
 package com.exort.entity;
 
+/**
+ * This class have the same meaning with Participation, combining all data into a string together
+ * @see Participation
+ * @author NeilKleistGao
+ * @version 1.0.0
+ */
 public class ParticipationWithContent {
     private String title;
     private String characters;

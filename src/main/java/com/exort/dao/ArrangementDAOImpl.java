@@ -12,6 +12,8 @@ import java.util.Map;
 /**
  * @see com.exort.dao.ArrangementDAO
  * @see com.exort.dao.BaseDAO
+ * @author NeilKleistGao
+ * @version 1.0.0
  */
 public class ArrangementDAOImpl extends BaseDAO implements ArrangementDAO {
 

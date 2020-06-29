@@ -13,11 +13,19 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * This class provides with some static methods to assist in git operations
+ * @author NeilKleistGao
+ * @version 1.0.0
+ */
 public class GitUtil {
     private static final String filename = "./git_data/exort.sql";
     private static File path = new File("./git_data");
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
 
+    /**
+     * This method checks if git path is legal and updates them
+     */
     public static void checkUpdate() {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:mysql.xml");
         SettingsDAO dao = (SettingsDAO)context.getBean("settingsDao");
@@ -38,10 +46,20 @@ public class GitUtil {
         }
     }
 
+    /**
+     * This method create a credentials provider for git operation
+     * @param username The git username
+     * @param password The git password
+     * @return The credentials provider object
+     */
     public static CredentialsProvider createCredentialsProvider(String username, String password) {
         return new UsernamePasswordCredentialsProvider(username, password);
     }
 
+    /**
+     * This method clones a repository from git
+     * @param repo the repository link
+     */
     public static void cloneFrom(String repo) {
         try {
             Git.cloneRepository().setURI(repo).setDirectory(path).call();
@@ -52,6 +70,9 @@ public class GitUtil {
 
     }
 
+    /**
+     * This method pulls data from the git
+     */
     public static void pull() {
         try {
             Git git = Git.open(path);
@@ -62,6 +83,10 @@ public class GitUtil {
         }
     }
 
+    /**
+     * This methods push user's change to the git
+     * @param provider The credentials provider object
+     */
     public static void push(CredentialsProvider provider) {
         try {
             Git git = Git.open(path);

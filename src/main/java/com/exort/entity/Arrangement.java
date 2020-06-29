@@ -3,6 +3,21 @@ package com.exort.entity;
 import java.sql.Date;
 import java.sql.Time;
 
+/**
+ * This class represents the data in the table arrangement
+ * create table `arrangement`(
+ *     id int primary key auto_increment,
+ *     name varchar(64) not null,
+ *     start_date Date not null,
+ *     end_date Date not null,
+ *     `repeat` int not null,
+ *     start_time Time not null,
+ *     end_time Time not null
+ * ) engine=InnoDB default charset=utf8;
+ *
+ * @author NeilKleistGao
+ * @version 1.0.0
+ */
 public class Arrangement {
     private Integer id = null;
     private String name;

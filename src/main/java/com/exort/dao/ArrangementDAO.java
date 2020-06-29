@@ -20,7 +20,7 @@ public interface ArrangementDAO {
     /**
      * This method searches for the arrangement object having specified id
      * @param id The specified id
-     * @return The arrangement object having specified id
+     * @return The arrangement object having specified id, or null if it's not found
      */
     public Arrangement find(Integer id);
 

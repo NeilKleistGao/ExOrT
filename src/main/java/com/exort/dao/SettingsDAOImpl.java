@@ -7,6 +7,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @see com.exort.dao.BaseDAO
+ * @see com.exort.dao.SettingsDAO
+ * @author NeilKleistGao
+ * @version 1.0.0
+ */
 public class SettingsDAOImpl extends BaseDAO implements SettingsDAO {
     @Override
     public SettingsPair find(String key) {

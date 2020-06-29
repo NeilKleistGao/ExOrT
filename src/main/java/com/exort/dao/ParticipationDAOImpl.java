@@ -7,6 +7,12 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * @see com.exort.dao.BaseDAO
+ * @see com.exort.dao.ParticipationDAO
+ * @author NeilKleistGao
+ * @version 1.0.0
+ */
 public class ParticipationDAOImpl extends BaseDAO implements ParticipationDAO {
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
