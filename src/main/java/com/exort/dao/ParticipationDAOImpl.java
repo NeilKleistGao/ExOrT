@@ -11,7 +11,7 @@ import java.util.*;
  * @see com.exort.dao.BaseDAO
  * @see com.exort.dao.ParticipationDAO
  * @author NeilKleistGao
- * @version 1.0.0
+ * @version 1.0.1
  */
 public class ParticipationDAOImpl extends BaseDAO implements ParticipationDAO {
 
@@ -76,12 +76,12 @@ public class ParticipationDAOImpl extends BaseDAO implements ParticipationDAO {
     }
 
     @Override
-    public List<Map<Integer, ParticipationWithContent>> findBetween(Date today) {
+    public List<Map<Integer, ParticipationWithContent>> findContaining(Date today) {
         String sql = "select arrangement.id as aid, arrangement.name as aname, `character`.name as cname, start_time, end_time from (arrangement, participation, `character`) " +
                 "where arrangement.id = participation.arrangement_id and " +
                 "`character`.id = participation.character_id and " +
-                "date(\"" + dateFormat.format(today) + "\") between start_date and end_date and " +
-                "((select datediff(date(\"" + dateFormat.format(today) + "\"), arrangement.start_date) as df) % arrangement.repeat) = 0;";
+                "date(\"" + dateFormat.format(today) + "\") between start_date and end_date and (`repeat`=0 or " +
+                "((select datediff(date(\"" + dateFormat.format(today) + "\"), arrangement.start_date) as df) % arrangement.repeat) = 0);";
         List rows = this.getJdbcTemplate().queryForList(sql);
         Iterator it = rows.iterator();
         List<Map<Integer, ParticipationWithContent>> res = new LinkedList<>();

@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * This interface determines all operations on the table participation in database
  * @author NeilKleistGao
- * @version 1.0.0
+ * @version 1.0.1
  * @see Participation
  * @see ParticipationWithContent
  */
@@ -61,5 +61,5 @@ public interface ParticipationDAO {
      * @param today The given date
      * @return A list including all participation divided by arrangement id
      */
-    public List<Map<Integer, ParticipationWithContent>> findBetween(Date today);
+    public List<Map<Integer, ParticipationWithContent>> findContaining(Date today);
 }

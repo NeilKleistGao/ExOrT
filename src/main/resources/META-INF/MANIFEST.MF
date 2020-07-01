@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Main-Class: com.exort.ExortApplication
+Class-Path: libs/jackson-module-parameter-names-2.11.0.jar libs/jackson-
+ databind-2.11.0.jar libs/tomcat-embed-core-9.0.35.jar libs/spring-webmv
+ c-5.2.6.RELEASE.jar libs/spring-expression-5.2.6.RELEASE.jar libs/thyme
+ leaf-extras-java8time-3.0.4.RELEASE.jar libs/spring-aop-5.2.6.RELEASE.j
+ ar libs/spring-web-5.2.6.RELEASE.jar libs/spring-boot-starter-json-2.3.
+ 0.RELEASE.jar libs/spring-context-5.2.6.RELEASE.jar libs/jackson-annota
+ tions-2.11.0.jar libs/jackson-core-2.11.0.jar libs/spring-tx-5.2.6.RELE
+ ASE.jar libs/attoparser-2.0.5.RELEASE.jar libs/jackson-datatype-jsr310-
+ 2.11.0.jar libs/log4j-to-slf4j-2.13.2.jar libs/log4j-api-2.13.2.jar lib
+ s/thymeleaf-3.0.11.RELEASE.jar libs/logback-classic-1.2.3.jar libs/tomc
+ at-embed-websocket-9.0.35.jar libs/slf4j-api-1.7.30.jar libs/spring-boo
+ t-autoconfigure-2.3.0.RELEASE.jar libs/spring-jcl-5.2.6.RELEASE.jar lib
+ s/jakarta.annotation-api-1.3.5.jar libs/HikariCP-3.4.5.jar libs/commons
+ -pool2-2.6.2.jar libs/spring-jdbc-5.2.6.RELEASE.jar libs/mysql-connecto
+ r-java-8.0.20.jar libs/jul-to-slf4j-1.7.30.jar libs/thymeleaf-spring5-3
+ .0.11.RELEASE.jar libs/jakarta.el-3.0.3.jar libs/spring-boot-2.3.0.RELE
+ ASE.jar libs/org.eclipse.jgit-3.3.2.201404171909-r.jar libs/jsch-0.1.50
+ .jar libs/JavaEWAH-0.7.9.jar libs/httpclient-4.1.3.jar libs/httpcore-4.
+ 1.4.jar libs/commons-logging-1.1.1.jar libs/commons-codec-1.4.jar libs/
+ spring-boot-starter-web-2.3.0.RELEASE.jar libs/logback-core-1.2.3.jar l
+ ibs/unbescape-1.1.6.RELEASE.jar libs/spring-core-5.2.6.RELEASE.jar libs
+ /spring-boot-starter-logging-2.3.0.RELEASE.jar libs/spring-beans-5.2.6.
+ RELEASE.jar libs/snakeyaml-1.26.jar libs/commons-logging-1.2.jar libs/s
+ pring-boot-starter-jdbc-2.3.0.RELEASE.jar libs/commons-dbcp2-2.4.0-test
+ s.jar libs/jackson-datatype-jdk8-2.11.0.jar libs/spring-boot-starter-to
+ mcat-2.3.0.RELEASE.jar libs/spring-boot-starter-thymeleaf-2.3.0.RELEASE
+ .jar libs/commons-dbcp2-2.4.0.jar libs/spring-boot-starter-2.3.0.RELEAS
+ E.jar
+

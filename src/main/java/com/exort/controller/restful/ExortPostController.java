@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * This controller class is in charge of all post requests in restful form
  * @author NeilKleistGao
- * @version 1.0.0
+ * @version 1.0.1
  */
 @RestController
 public class ExortPostController {
@@ -64,16 +64,18 @@ public class ExortPostController {
         ArrangementDAO dao = (ArrangementDAO)context.getBean("arrangementDao");
 
         Arrangement arrangement = new Arrangement();
+        String ext = ":00";
         if (!param.get("id").equals("")) {
             arrangement.setId(Integer.valueOf(param.get("id")));
+            ext = "";
         }
 
         arrangement.setName(param.get("name"));
         arrangement.setStart_date(Date.valueOf(param.get("start_date")));
         arrangement.setEnd_date(Date.valueOf(param.get("end_date")));
         arrangement.setRepeat(Integer.valueOf(param.get("repeat")));
-        arrangement.setStart_time(Time.valueOf(param.get("start_time") + ":00"));
-        arrangement.setEnd_time(Time.valueOf(param.get("end_time") + ":00"));
+        arrangement.setStart_time(Time.valueOf(param.get("start_time") + ext));
+        arrangement.setEnd_time(Time.valueOf(param.get("end_time") + ext));
 
         if (dao.find(arrangement.getId()) == null) {
             dao.insert(arrangement);
@@ -136,7 +138,7 @@ public class ExortPostController {
             }
 
             for (Map.Entry<String, String> entry : param.entrySet()) {
-                if (Boolean.valueOf(entry.getValue()) == true && !participation.contains(entry.getKey())) {
+                if (Boolean.valueOf(entry.getValue()) == true && !participation.contains(Integer.valueOf(entry.getKey()))) {
                     dao.insert(cid, Integer.valueOf(entry.getKey()));
                 }
             }

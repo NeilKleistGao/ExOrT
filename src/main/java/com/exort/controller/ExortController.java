@@ -18,7 +18,7 @@ import java.util.*;
 /**
  * This controller class is in charge of all non-restful requests
  * @author NeilKleistGao
- * @version 1.0.0
+ * @version 1.0.1
  */
 @Controller
 public class ExortController {
@@ -57,7 +57,7 @@ public class ExortController {
             calendar.add(Calendar.DATE, i);
             Date now = calendar.getTime();
 
-            List<Map<Integer, ParticipationWithContent>> data = dao.findBetween(now);
+            List<Map<Integer, ParticipationWithContent>> data = dao.findContaining(now);
 
             for (int j = 0; j < 32; j++) {
                 Map<Integer, ParticipationWithContent> map = data.get(j);
